@@ -75,3 +75,4 @@ agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
 query = "Is the domain openai.com secure? Check DNS & WHOIS and tell vulnerabilities."
 response = agent.invoke(query)
 print("\n🧠 Final Output:\n", response)
+#hello

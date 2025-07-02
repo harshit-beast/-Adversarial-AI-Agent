@@ -1,0 +1,7 @@
+www
+mail
+ftp
+webmail
+admin
+blog
+test

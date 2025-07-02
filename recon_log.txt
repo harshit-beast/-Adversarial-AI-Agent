@@ -1,0 +1,92 @@
+=== Recon Started: 2025-06-16 02:50:23.114248 ===
+
+🔎 WHOIS Info
+[WHOIS] Domain: google.com
+Registrar: MarkMonitor, Inc.
+Creation Date: [datetime.datetime(1997, 9, 15, 4, 0), datetime.datetime(1997, 9, 15, 7, 0, tzinfo=datetime.timezone.utc)]
+Expiration Date: [datetime.datetime(2028, 9, 14, 4, 0), datetime.datetime(2028, 9, 13, 7, 0, tzinfo=datetime.timezone.utc)]
+Name Servers: ['NS1.GOOGLE.COM', 'NS2.GOOGLE.COM', 'NS3.GOOGLE.COM', 'NS4.GOOGLE.COM']
+
+🌐 IP Address
+[IP] google.com resolves to 142.250.192.174
+
+📄 DNS Records
+[DNS - A] 142.250.193.110
+[DNS - MX] 10 smtp.google.com.
+[DNS - NS] ns2.google.com.
+[DNS - NS] ns1.google.com.
+[DNS - NS] ns3.google.com.
+[DNS - NS] ns4.google.com.
+
+📡 Port Scan
+[Port Scan] Host: 142.250.207.206
+[Port tcp] 80 is open
+[Port tcp] 443 is open
+[Port tcp] 2000 is open
+[Port tcp] 5060 is open
+
+🔍 Subdomains
+[Subdomain Scan] Starting...
+[Subdomain] Found: www.google.com → 142.251.43.164
+[Subdomain] Found: mail.google.com → 142.250.195.5
+[Subdomain] Found: ns1.google.com → 216.239.32.10
+[Subdomain] Found: ns2.google.com → 216.239.34.10
+
+--- Recon started for google.com ---
+{
+  "domain_name": "GOOGLE.COM",
+  "registrar": "MarkMonitor, Inc.",
+  "registrar_url": "http://www.markmonitor.com",
+  "reseller": null,
+  "whois_server": "whois.markmonitor.com",
+  "referral_url": null,
+  "updated_date": [
+    "2019-09-09 15:39:04",
+    "2024-08-02 02:17:33+00:00"
+  ],
+  "creation_date": [
+    "1997-09-15 04:00:00",
+    "1997-09-15 07:00:00+00:00"
+  ],
+  "expiration_date": [
+    "2028-09-14 04:00:00",
+    "2028-09-13 07:00:00+00:00"
+  ],
+  "name_servers": [
+    "NS1.GOOGLE.COM",
+    "NS2.GOOGLE.COM",
+    "NS3.GOOGLE.COM",
+    "NS4.GOOGLE.COM"
+  ],
+  "status": [
+    "clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited",
+    "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+    "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited",
+    "serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited",
+    "serverTransferProhibited https://icann.org/epp#serverTransferProhibited",
+    "serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited",
+    "clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)",
+    "clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)",
+    "clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)",
+    "serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)",
+    "serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)",
+    "serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)"
+  ],
+  "emails": [
+    "abusecomplaints@markmonitor.com",
+    "whoisrequest@markmonitor.com"
+  ],
+  "dnssec": "unsigned",
+  "name": null,
+  "org": "Google LLC",
+  "address": null,
+  "city": null,
+  "state": "CA",
+  "registrant_postal_code": null,
+  "country": "US"
+}
+142.250.193.110
+www.google.com
+mail.google.com
+ns1.google.com
+blog.google.com

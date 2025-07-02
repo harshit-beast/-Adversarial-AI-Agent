@@ -1,0 +1,181 @@
+import whois
+
+import dns.resolver
+
+import socket
+
+import nmap
+
+import requests
+
+from datetime import datetime
+
+
+
+# Logging setup
+
+def log_output(data):
+    print(data)
+    with open("recon_log.txt", "a") as log_file:
+        log_file.write(data + "\n")
+
+
+
+
+# WHOIS Info
+
+def whois_lookup(domain):
+
+    log_output(f"\n==== WHOIS Info: {domain} ====")
+
+    try:
+
+        w = whois.whois(domain)
+
+        log_output(str(w))
+
+    except Exception as e:
+
+        log_output(f"WHOIS Error: {e}")
+
+
+
+# DNS Records
+
+def dns_records(domain):
+
+    log_output(f"\n==== DNS Records for: {domain} ====")
+
+    try:
+
+        for record_type in ['A', 'MX', 'NS']:
+
+            answers = dns.resolver.resolve(domain, record_type)
+
+            log_output(f"{record_type} Records:")
+
+            for rdata in answers:
+
+                log_output(str(rdata))
+
+    except Exception as e:
+
+        log_output(f"DNS Error: {e}")
+
+
+
+# IP Address
+
+def resolve_ip(domain):
+
+    log_output(f"\n==== IP Address for: {domain} ====")
+
+    try:
+
+        ip = socket.gethostbyname(domain)
+
+        log_output(f"IP Address: {ip}")
+
+        return ip
+
+    except Exception as e:
+
+        log_output(f"IP Resolution Error: {e}")
+
+        return None
+
+
+
+# Port Scanner
+
+def scan_ports(ip):
+
+    log_output(f"\n==== Open Ports for: {ip} ====")
+
+    try:
+
+        scanner = nmap.PortScanner()
+
+        scanner.scan(ip, arguments='--top-ports 1000')
+
+        for port in scanner[ip]['tcp']:
+
+            state = scanner[ip]['tcp'][port]['state']
+
+            if state == 'open':
+
+                log_output(f"Port {port}: {state}")
+
+    except Exception as e:
+
+        log_output(f"Nmap Error: {e}")
+
+
+
+# Subdomain Finder
+
+def find_subdomains(domain):
+
+    log_output(f"\n==== Subdomain Finder ====")
+
+    try:
+
+        with open("subdomains.txt", "r") as file:
+
+            subdomains = file.read().splitlines()
+
+
+
+        for sub in subdomains:
+
+            url = f"http://{sub}.{domain}"
+
+            try:
+
+                response = requests.get(url, timeout=2)
+
+                log_output(f"✓ Found: {url}")
+
+            except:
+
+                pass
+
+    except Exception as e:
+
+        log_output(f"Subdomain Error: {e}")
+
+
+
+# 🟢 Main Function
+
+def main():
+
+    domain = input("Enter target domain: ").strip()
+
+    log_output(f"\n\n=== Recon Start: {domain} | {datetime.now()} ===")
+
+
+
+    whois_lookup(domain)
+
+    dns_records(domain)
+
+    ip = resolve_ip(domain)
+
+    if ip:
+
+        scan_ports(ip)
+
+    find_subdomains(domain)
+
+
+
+    log_output(f"=== Recon Complete: {domain} ===\n")
+
+
+
+# Run the main function
+
+if __name__ == "__main__":
+
+    main()

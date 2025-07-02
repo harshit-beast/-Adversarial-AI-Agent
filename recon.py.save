@@ -1,0 +1,98 @@
+import whois
+import dns.resolver
+import socket
+import nmap
+import requests
+
+# WHOIS Info
+
+
+
+
+
+def log_output(data):
+    print(data)
+    with open("recon_log.txt", "a") as log_file:
+        log_file.write(data + "\n")
+
+def get_domain_info(domain):
+    log_output("\n🔍 WHOIS Info:")
+    try:
+        info = whois.whois(domain)
+        log_output(str(info))  # Convert WHOIS data to string
+    except Exception as e:
+        log_output(f"WHOIS Error: {e}")
+
+# DNS Records
+
+
+def get_dns_records(domain):
+    print("\n🌐 DNS Records:")
+    try:
+        for record in ['A', 'MX', 'NS']:
+            answers = dns.resolver.resolve(domain, record)
+            print(f"{record} Records:")
+            for rdata in answers:
+                print("  ", rdata.to_text())
+    except Exception as e:
+        print("DNS Error:", e)
+
+
+# IP Address
+
+def get_ip(domain):
+    log_output("\n💡 IP Address:")
+    try:
+        ip = socket.gethostbyname(domain)
+        log_output(f"IP Address: {ip}")
+        return ip
+    except Exception as e:
+        log_output(f"IP Error: {e}")
+        return None
+
+# Port Scanner
+def scan_ports(ip):
+    log_output("\n🛡 Open Ports (Top 1000):")
+    try:
+        scanner = nmap.PortScanner()
+        scanner.scan(ip, arguments='--top-ports 1000')
+        for port in scanner[ip]['tcp']:
+            state = scanner[ip]['tcp'][port]['state']
+            log_output(f"Port {port}: {state}")
+    except Exception as e:
+        log_output(f"Nmap Error: {e}")
+
+
+# Subdomain Finder
+def find_subdomains(domain):
+    log_output("\n🔎 Subdomain Finder:")
+    try:
+        with open('subdomains.txt', 'r') as file:
+            subdomains = file.read().splitlines()
+
+        for sub in subdomains:
+            url = f"http://{sub}.{domain}"
+            try:
+                requests.get(url, timeout=2)
+                log_output(f"✅ Found: {url}")
+            except:
+                pass
+    except Exception as e:
+        log_output(f"Subdomain Error: {e}")
+
+
+# Main Function
+if __name__ == "__main__":
+    log_output("=== AI Recon Agent Started ===")
+    domain = input("Enter domain (e.g., google.com): ").strip()
+
+    get_domain_info(domain)
+    get_dns_records(domain)
+
+    ip = get_ip(domain)
+    if ip:
+        scan_ports(ip)
+
+    find_subdomains(domain)
+    log_output("=== Recon Complete ===\n")
+

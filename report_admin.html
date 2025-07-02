@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Recon Report for LangGraph Agent Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      background: #343a40;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    h2 {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    pre {
+      background: #ffffff;
+      border: 1px solid #ced4da;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .risk-low { color: green; }
+    .risk-medium { color: orange; }
+    .risk-high { color: red; }
+    .risk-critical { color: darkred; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Recon Report for LangGraph Agent Report</h1>
+<h2>User Query</h2>
+<pre>Look for admin panels on admin</pre>
+<h2>Tool Output</h2>
+<pre>No admin panels found.</pre>
+<h2>LLM Summary</h2>
+<pre>content='Reconnaissance result indicates that no administrative panels or interfaces were discovered, suggesting the target system or application does not have any easily accessible management tools or configurations available to unauthorized users. This could indicate a strong security posture or a lack of configuration options for administrators as well.' additional_kwargs={} response_metadata={'model': 'llama3', 'created_at': '2025-07-02T09:22:42.710339Z', 'done': True, 'done_reason': 'stop', 'total_duration': 10406078375, 'load_duration': 61203333, 'prompt_eval_count': 22, 'prompt_eval_duration': 4089555333, 'eval_count': 54, 'eval_duration': 6246744959, 'model_name': 'llama3'} id='run--ebae6e81-2da6-492a-a535-d91c7036d316-0' usage_metadata={'input_tokens': 22, 'output_tokens': 54, 'total_tokens': 76}</pre>
+
+  <h2>Risk Analysis</h2>
+  <p><strong>Risk Score:</strong> 0/3</p>
+  <p class="risk-low"><strong>Risk Level:</strong> Low</p>
+</body>
+</html>

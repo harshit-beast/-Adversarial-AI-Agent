@@ -68,7 +68,8 @@ elif choice == "2":
         query = f"{action} for {domain}"
 
     output_file = os.path.join(base_dir, f"report_{domain.replace('.', '_')}.html")
-    cmd = f"python3 {os.path.join(base_dir, 'day29_user_query_agent.py')} --query \"{query}\" --output \"{output_file}\""
+    cmd = f'python3 "{os.path.join(base_dir, "user_query_agent.py")}" --query "{query}" --output "{output_file}"'
+
     subprocess.run(cmd, shell=True)
 
     if os.path.exists(output_file):

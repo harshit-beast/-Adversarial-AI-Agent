@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Recon Report for LangGraph Agent Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      background: #343a40;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    h2 {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    pre {
+      background: #ffffff;
+      border: 1px solid #ced4da;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .risk-low { color: green; }
+    .risk-medium { color: orange; }
+    .risk-high { color: red; }
+    .risk-critical { color: darkred; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Recon Report for LangGraph Agent Report</h1>
+<h2>User Query</h2>
+<pre>Reverse DNS lookup of mac.com</pre>
+<h2>Tool Output</h2>
+<pre>17.253.142.4</pre>
+<h2>LLM Summary</h2>
+<pre>content='A simple one!\n\nThe recon result appears to be an IP address: 17.253.142.4\n\nThis is likely a numerical identifier assigned to a device or network interface, and not much more can be gleaned from just the address itself. To gather more information about this IP address, additional research would be needed, such as:\n\n* Performing a DNS lookup to determine the domain name associated with this IP\n* Conducting a WHOIS search to find out who the IP is registered to\n* Analyzing network traffic or packet data to learn more about the device or network using this IP\n\nIf you have any specific questions about this IP address, feel free to ask and I can try to help further!' additional_kwargs={} response_metadata={'model': 'llama3', 'created_at': '2025-07-02T09:15:47.204972Z', 'done': True, 'done_reason': 'stop', 'total_duration': 18462272084, 'load_duration': 79652167, 'prompt_eval_count': 24, 'prompt_eval_duration': 3406694541, 'eval_count': 145, 'eval_duration': 14971187459, 'model_name': 'llama3'} id='run--6ccb30fe-6bcb-40e0-97fe-6929683b5922-0' usage_metadata={'input_tokens': 24, 'output_tokens': 145, 'total_tokens': 169}</pre>
+
+  <h2>Risk Analysis</h2>
+  <p><strong>Risk Score:</strong> 0/3</p>
+  <p class="risk-low"><strong>Risk Level:</strong> Low</p>
+</body>
+</html>

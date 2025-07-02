@@ -6,9 +6,10 @@ import whois
 import ssl
 import socket
 import requests
+import time
 from datetime import datetime
 
-from langchain_ollama import ChatOllama  # ✅ Working version with invoke()
+from langchain_ollama import ChatOllama  # ✅ LLM
 from langchain_core.tools import Tool
 
 from report_generator import generate_report
@@ -19,7 +20,7 @@ from recon_modules import run_port_scan, run_subdomain_scan
 def clean_domain(domain):
     return domain.strip().split()[0].replace('@10.', '')
 
-# -------- Tools -------- #
+# -------- Tool Functions -------- #
 def run_dns(domain):
     try:
         domain = clean_domain(domain)
@@ -80,17 +81,25 @@ def get_headers(domain):
 def tech_stack(domain):
     return "Tech stack detection not implemented. Use Wappalyzer API."
 
+import time
+
 def run_vulnerability_scan(domain):
     try:
+        start = time.time()
         result = subprocess.run(
-            ["nuclei", "-u", f"https://{domain}", "-silent", "-timeout", "10"],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=60
+            ["nuclei", "-u", f"https://{domain}", "-silent", "-timeout", "15"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=180
         )
-        return result.stdout or result.stderr or "✅ No vulnerabilities found."
+        end = time.time()
+        output = result.stdout or result.stderr or "✅ No vulnerabilities found."
+        return f"⏱️ Scan duration: {round(end - start)} seconds\n{output}"
+    except subprocess.TimeoutExpired:
+        return f"Scan Error: Nuclei scan timed out after 180 seconds."
     except Exception as e:
         return f"Scan Error: {e}"
 
-# -------- Tool List -------- #
+
+# -------- Tools List -------- #
 tools = [
     Tool(name="DNS Lookup", func=run_dns, description="Get DNS A records"),
     Tool(name="WHOIS Lookup", func=run_whois, description="WHOIS info"),
@@ -105,15 +114,32 @@ tools = [
     Tool(name="Vulnerability Scanner", func=run_vulnerability_scan, description="Nuclei CVE scan")
 ]
 
+# -------- Keyword Map for Matching -------- #
+tool_keywords = {
+    "DNS Lookup": ["dns", "a record"],
+    "WHOIS Lookup": ["whois"],
+    "SSL Check": ["ssl", "certificate"],
+    "Port Scan": ["port", "nmap", "scan"],
+    "Subdomain Finder": ["subdomain", "subdomains"],
+    "Admin Panel Finder": ["admin", "panel", "admin panel"],
+    "IP Geolocation": ["geo", "location", "ip location"],
+    "Reverse DNS": ["reverse dns", "ptr"],
+    "HTTP Header Checker": ["header", "http header"],
+    "Technology Stack Detector": ["stack", "tech", "technology", "wappalyzer"],
+    "Vulnerability Scanner": ["vuln", "vulnerability", "cve", "exploit", "nuclei"]
+}
+
 # -------- Manual Tool Runner -------- #
 def manual_tool_runner(query, domain):
+    query_lower = query.lower()
     for tool in tools:
-        if any(k in query.lower() for k in tool.name.lower().split()):
+        keywords = tool_keywords.get(tool.name, [])
+        if any(k in query_lower for k in keywords):
             print(f"🔧 Using Tool: {tool.name}")
             return tool.func(domain)
     return f"❌ No matching tool found for: '{query}'"
 
-# -------- Main CLI -------- #
+# -------- Main CLI Logic -------- #
 parser = argparse.ArgumentParser()
 parser.add_argument("--query", required=True)
 parser.add_argument("--output", default="day29_report.html")
@@ -121,24 +147,24 @@ args = parser.parse_args()
 query = args.query
 output_file = args.output
 
-# -------- Normalize Domain -------- #
+# -------- Extract Domain from Query -------- #
 domain_match = re.search(r'\b([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b', query)
 domain = domain_match.group(1) if domain_match else "example.com"
 
-# -------- Run Tool -------- #
+# -------- Execute Tool -------- #
 tool_output = manual_tool_runner(query, domain)
 
-# -------- Use Ollama for Summary -------- #
+# -------- Summarize with LLM -------- #
 llm = ChatOllama(model="llama3")
 summary = llm.invoke(f"Summarize this recon result:\n\n{tool_output}")
 
-# -------- Final Output -------- #
+# -------- Display & Save Report -------- #
 print("\n🧠 Final Output:\n", summary)
 
-# -------- Save Report -------- #
 generate_report("LangGraph Agent Report", {
     "User Query": query,
     "Tool Output": tool_output,
     "LLM Summary": str(summary)
 }, output_file)
+
 print(f"\n✅ Report saved: {output_file}")

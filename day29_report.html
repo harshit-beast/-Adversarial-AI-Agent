@@ -36,11 +36,12 @@
 <body>
   <h1>Recon Report for LangGraph Agent Report</h1>
 <h2>User Query</h2>
-<pre>check vuln xiaomi.com</pre>
+<pre>check vuln on testphp.vulnweb.com</pre>
 <h2>Tool Output</h2>
-<pre>SSL Error: tuple index out of range</pre>
+<pre>⏱️ Scan duration: 22 seconds
+✅ No vulnerabilities found.</pre>
 <h2>LLM Summary</h2>
-<pre>content='I think there may be some confusion here!\n\nIt looks like you\'ve provided a error message, not a recon result. Specifically, it appears to be an SSL (Secure Sockets Layer) error message.\n\nThe message "tuple index out of range" suggests that there\'s an issue with indexing into a tuple (a type of data structure in Python). The error likely occurs when trying to access an element at an index that doesn\'t exist or is beyond the bounds of the tuple.\n\nIf you\'re experiencing this error, it might be helpful to provide more context about what code is causing the issue and how you\'re using tuples.' additional_kwargs={} response_metadata={'model': 'llama3', 'created_at': '2025-07-02T10:12:21.426145Z', 'done': True, 'done_reason': 'stop', 'total_duration': 23254805750, 'load_duration': 5358503667, 'prompt_eval_count': 25, 'prompt_eval_duration': 1346089125, 'eval_count': 126, 'eval_duration': 16517539750, 'model_name': 'llama3'} id='run--1c84a1a5-e52c-4f59-9914-6597e0298ab3-0' usage_metadata={'input_tokens': 25, 'output_tokens': 126, 'total_tokens': 151}</pre>
+<pre>content='The scan was completed in 22 seconds and did not detect any vulnerabilities.' additional_kwargs={} response_metadata={'model': 'llama3', 'created_at': '2025-07-02T11:11:32.958745Z', 'done': True, 'done_reason': 'stop', 'total_duration': 7082678583, 'load_duration': 39771250, 'prompt_eval_count': 34, 'prompt_eval_duration': 5074961375, 'eval_count': 16, 'eval_duration': 1959336958, 'model_name': 'llama3'} id='run--973cd892-9944-4eb9-bf99-d6469794be45-0' usage_metadata={'input_tokens': 34, 'output_tokens': 16, 'total_tokens': 50}</pre>
 
   <h2>Risk Analysis</h2>
   <p><strong>Risk Score:</strong> 0/3</p>

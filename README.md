@@ -1,43 +1,51 @@
-# 🕵️‍♂️ Adversarial AI  Agent
+# 🛡️ AI Recon Cybersecurity Agent (LangChain + LLM)
 
-> **AI-Powered Cybersecurity Reconnaissance and Exploitation Simulation Agent** using **LangGraph**, **Ollama (LLaMA3)**, and **Python Recon Tools**.
+This project is an **AI-powered Reconnaissance Agent** designed for cybersecurity tasks. It combines powerful recon tools like DNS lookup, WHOIS, SSL check, and CVE scanning with natural language summarization using **LangChain** and **Ollama**.
 
----
-
-## 🚀 Overview
-
-This project simulates a smart **AI agent** that automates the entire reconnaissance phase of ethical hacking — including **tool execution, multi-step decision making, vulnerability analysis**, and **report summarization** using **large language models (LLMs)**.
-
-Built using:
-- 🧠 **Ollama (LLaMA3)** for natural language understanding & reasoning
-- 🔁 **LangGraph** for AI agent state management
-- ⚙️ **Python-based recon tools** for WHOIS, DNS, subdomains, ports, SSL, CVEs, and more
+> ✅ Built with LangChain  
+> ⚙️ CLI-based workflow  
+> 💡 LLM-powered summaries  
+> 🔍 Modular recon tools  
+> 📄 Auto-generated reports  
 
 ---
 
-## 📌 Key Features
+## 🚀 Features
 
-| 🔧 Feature | Description |
-|-----------|-------------|
-| 🤖 Natural Query Input | Just type: `"Check vulnerabilities of google.com"` |
-| 🛠️ Automated Recon | WHOIS, DNS, Subdomains, SSL, Ports, JS tokens, and more |
-| 🔍 Tech Detection | Detects backend tech stack & headers |
-| 📊 LLM Analysis | Summarizes raw tool output into risk-based insights |
-| 🧠 Exploit Suggestions | AI recommends possible CVEs and attack vectors |
-| 📄 Final Report | Human-readable threat summary |
-| 🧪 Simulation Only | No real-world exploitation; safe for learning/demo |
+- 🔍 **Domain Reconnaissance Tools**
+  - WHOIS Lookup
+  - DNS Resolution
+  - SSL Certificate Checker
+  - Port Scanner
+  - Subdomain Enumeration
+  - Admin Panel Finder
+  - IP Geolocation
+  - Reverse DNS
+  - HTTP Headers Fetcher
+  - Technology Stack Detector (placeholder)
+  - CVE/Vulnerability Scanner via [Nuclei](https://github.com/projectdiscovery/nuclei)
 
----
+- 🧠 **Natural Language Summarization**
+  - Uses `ChatOllama` with the `llama3` model to explain technical results in simple language.
 
-## 🔬 Adversarial Phases Simulated
+- 📁 **Modular Design**
+  - Each recon task is a separate function/tool.
+  - Easily extendable with more tools or API integrations.
 
-1. **Reconnaissance**: Scans emails, ports, subdomains, tech stack, etc.
-2. **Gaining Access**: Simulates phishing/CVE-based access logic
-3. **Privilege Escalation**: Suggests credential hunting/escalation techniques
-4. **Impact**: Shows possible data encryption/exfiltration (simulated)
-5. **Evasion**: AI explains how attacker could hide traces
+- 📄 **Report Generation**
+  - Automatically saves recon results and LLM summaries to an HTML file.
 
 ---
 
 ## 🧱 Project Structure
 
+```bash
+Adversarial_AI_Agent/
+│
+├── terminal_UI.py              # Interactive CLI for users
+├── user_query_agent.py         # Tool handler and LLM summarizer
+├── recon_modules/              # Port scanner, subdomain finder, etc.
+├── access_simulation.py        # Admin panel finder logic
+├── report_generator.py         # HTML report generation
+├── README.md                   # Project documentation
+└── requirements.txt            # Python dependencies

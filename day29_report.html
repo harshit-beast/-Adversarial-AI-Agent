@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Recon Report for LangGraph Agent Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      background: #343a40;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    h2 {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    pre {
+      background: #ffffff;
+      border: 1px solid #ced4da;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .risk-low { color: green; }
+    .risk-medium { color: orange; }
+    .risk-high { color: red; }
+    .risk-critical { color: darkred; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Recon Report for LangGraph Agent Report</h1>
+<h2>User Query</h2>
+<pre>check vuln xiaomi.com</pre>
+<h2>Tool Output</h2>
+<pre>SSL Error: tuple index out of range</pre>
+<h2>LLM Summary</h2>
+<pre>content='I think there may be some confusion here!\n\nIt looks like you\'ve provided a error message, not a recon result. Specifically, it appears to be an SSL (Secure Sockets Layer) error message.\n\nThe message "tuple index out of range" suggests that there\'s an issue with indexing into a tuple (a type of data structure in Python). The error likely occurs when trying to access an element at an index that doesn\'t exist or is beyond the bounds of the tuple.\n\nIf you\'re experiencing this error, it might be helpful to provide more context about what code is causing the issue and how you\'re using tuples.' additional_kwargs={} response_metadata={'model': 'llama3', 'created_at': '2025-07-02T10:12:21.426145Z', 'done': True, 'done_reason': 'stop', 'total_duration': 23254805750, 'load_duration': 5358503667, 'prompt_eval_count': 25, 'prompt_eval_duration': 1346089125, 'eval_count': 126, 'eval_duration': 16517539750, 'model_name': 'llama3'} id='run--1c84a1a5-e52c-4f59-9914-6597e0298ab3-0' usage_metadata={'input_tokens': 25, 'output_tokens': 126, 'total_tokens': 151}</pre>
+
+  <h2>Risk Analysis</h2>
+  <p><strong>Risk Score:</strong> 0/3</p>
+  <p class="risk-low"><strong>Risk Level:</strong> Low</p>
+</body>
+</html>

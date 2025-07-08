@@ -8,7 +8,7 @@ from report_generator import generate_report
 from exploit_tools.access_simulation import find_admin_panels, simulate_phishing_risk
 from exploit_tools.access_simulation import simulate_weak_login_attempts, simulate_data_exfiltration, simulate_ransomware_activity
 from exploit_tools.privilege_evasion import simulate_privilege_escalation, simulate_evasion
-from agent_brain import generate_response, is_ollama_running, react_to_llm_advice
+from agents.agent_brain import generate_response, is_ollama_running, react_to_llm_advice
 from utils.attack_graph import generate_attack_graph
 
 

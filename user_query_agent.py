@@ -10,6 +10,8 @@ import time
 import os
 from datetime import datetime
 
+from bs4 import BeautifulSoup
+
 from langchain_ollama import ChatOllama  # ✅ LLM
 from langchain_core.tools import Tool
 
@@ -142,7 +144,6 @@ def run_sqlmap_scan(url):
 
         raw_output = result.stdout or result.stderr or "✅ No SQL injection vulnerabilities found."
 
-        # LLM Summary
         llm = ChatOllama(model="llama3")
         summary_prompt = f"""You are a cybersecurity expert. The following output is from a SQLMap scan on a website.\nPlease summarize whether the site is vulnerable, what type of injection was found, the DBMS, and any important details in plain language:\n\n```\n{raw_output}\n```\nOnly include useful insights and remove unnecessary log lines."""
         summary = llm.invoke(summary_prompt)
@@ -153,6 +154,103 @@ def run_sqlmap_scan(url):
         return "❌ SQLMap timed out after 90s."
     except Exception as e:
         return f"❌ SQLMap failed: {e}"
+
+def run_xss_test(url):
+    try:
+        payload = "<script>alert(1337)</script>"
+
+        # Only inject if user passed the base URL with ?param=
+        if "=" not in url:
+            return "❌ Error: URL must include query parameter (e.g. ?q=)"
+
+        # Append encoded payload
+        full_url = url + requests.utils.quote(payload)
+
+        print(f"🚀 Injected URL: {full_url}")
+        response = requests.get(full_url, timeout=10)
+        raw_html = response.text
+
+        # Check raw HTML for payload presence
+        if payload in raw_html:
+            return f"🚨 Reflected XSS Found! Payload reflected directly in HTML."
+
+        # Check DOM via BeautifulSoup
+        soup = BeautifulSoup(raw_html, "html.parser")
+        script_tags = soup.find_all("script")
+        for tag in script_tags:
+            if "alert(1337)" in tag.text:
+                return f"🚨 Reflected XSS Found! <script>alert(1337)</script> executed."
+
+        return "✅ No reflected XSS detected."
+
+    except Exception as e:
+        return f"❌ XSS Test Failed: {e}"
+
+def run_stored_xss_test(url):
+    try:
+        payload = "<script>alert('xss')</script>"
+
+        # Sample form fields (modify as per target site)
+        form_data = {
+            "name": "harshit",
+            "comment": payload,
+            "submit": "submit"
+        }
+
+        session = requests.Session()
+
+        print(f"🚀 Sending POST to: {url}")
+        post_resp = session.post(url, data=form_data, timeout=10)
+
+        print("🔁 Reloading page to check reflection...")
+        view_resp = session.get(url, timeout=10)
+        raw_html = view_resp.text
+
+        # Save raw HTML to file for inspection
+        with open("stored_xss_response.html", "w", encoding="utf-8") as f:
+            f.write(raw_html)
+
+        # Check for reflection
+        if payload in raw_html:
+            return "🚨 Stored XSS Found! Payload reflected in HTML."
+
+        # DOM check (if script executed in source)
+        soup = BeautifulSoup(raw_html, "html.parser")
+        scripts = soup.find_all("script")
+        for tag in scripts:
+            if "alert" in tag.text:
+                return "🚨 Stored XSS Found inside <script> tag."
+
+        return "✅ No stored XSS detected."
+
+    except Exception as e:
+        return f"❌ Stored XSS Test Failed: {e}"
+
+def run_dom_xss_test(url):
+    try:
+        payload = "<script>alert(1337)</script>"
+        target_url = f"{url}#{payload}"
+
+        print(f"🔎 Testing DOM XSS on: {target_url}")
+
+        # Fetch page
+        resp = requests.get(target_url, timeout=10)
+        raw_html = resp.text
+
+        # Save for inspection
+        with open("dom_xss_response.html", "w", encoding="utf-8") as f:
+            f.write(raw_html)
+
+        # Check reflection of payload
+        if payload in raw_html:
+            return "🚨 Possible DOM XSS: Payload reflected in source."
+        elif "innerHTML" in raw_html or "document.write" in raw_html:
+            return "⚠️ Potential DOM XSS sink found (innerHTML/document.write present). Manual testing recommended."
+        else:
+            return "✅ No DOM XSS indicators found."
+
+    except Exception as e:
+        return f"❌ DOM XSS Test failed: {e}"
 
 # -------- Tools List -------- #
 tools = [
@@ -167,7 +265,20 @@ tools = [
     Tool(name="HTTP Header Checker", func=get_headers, description="Get response headers"),
     Tool(name="Technology Stack Detector", func=tech_stack, description="Detect stack (placeholder)"),
     Tool(name="Vulnerability Scanner", func=run_vulnerability_scan, description="Nuclei CVE scan"),
-    Tool(name="SQLMap Injection Tester", func=run_sqlmap_scan, description="Use SQLMap to test for SQL injection")
+    Tool(name="SQLMap Injection Tester", func=run_sqlmap_scan, description="Use SQLMap to test for SQL injection"),
+    Tool(name="XSS Injection Tester", func=run_xss_test, description="Check if a URL is vulnerable to reflected XSS"),
+    Tool(
+    name="Stored XSS Tester",
+    func=run_stored_xss_test,
+    description="Detects stored XSS by submitting payloads via POST and checking for reflection"
+),
+    Tool(
+    name="DOM XSS Tester",
+    func=run_dom_xss_test,
+    description="Detects potential DOM-based XSS via URL hash payload injection"
+)
+
+
 ]
 
 # -------- Keyword Map for Matching -------- #
@@ -183,7 +294,15 @@ tool_keywords = {
     "HTTP Header Checker": ["header", "http header"],
     "Technology Stack Detector": ["stack", "tech", "technology", "wappalyzer"],
     "Vulnerability Scanner": ["vuln", "vulnerability", "cve", "exploit", "nuclei"],
-    "SQLMap Injection Tester": ["sqlmap", "sql injection", "inject", "database"]
+    "SQLMap Injection Tester": ["sqlmap", "sql injection", "inject", "database"],
+    "XSS Injection Tester": ["xss", "cross site", "script", "javascript"],
+    "Stored XSS Tester": ["stored xss", "post xss", "xss form"],
+    "DOM XSS Tester": [
+    "dom xss", "dom-based xss", "fragment xss", "hash xss", "client-side xss"
+]
+
+
+
 }
 
 # -------- Manual Tool Runner -------- #
@@ -193,7 +312,7 @@ def manual_tool_runner(query, domain):
         keywords = tool_keywords.get(tool.name, [])
         if any(k in query_lower for k in keywords):
             print(f"🔧 Using Tool: {tool.name}")
-            return tool.func(domain if tool.name != "SQLMap Injection Tester" else query)
+            return tool.func(domain if tool.name != "SQLMap Injection Tester" and tool.name != "XSS Injection Tester" else query)
     return f"❌ No matching tool found for: '{query}'"
 
 # -------- Main CLI Logic (safe from import) -------- #
@@ -205,18 +324,14 @@ if __name__ == "__main__":
     query = args.query
     output_file = args.output
 
-    # Extract domain from query
     domain_match = re.search(r'\b([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b', query)
     domain = domain_match.group(1) if domain_match else "example.com"
 
-    # Run matched tool
     tool_output = manual_tool_runner(query, domain)
 
-    # Use LLM to summarize
     llm = ChatOllama(model="llama3")
     summary = llm.invoke(f"Summarize this recon result:\n\n{tool_output}")
 
-    # Display and save report
     print("\n🧠 Final Output:\n", summary)
     generate_report("LangGraph Agent Report", {
         "User Query": query,
@@ -225,4 +340,3 @@ if __name__ == "__main__":
     }, output_file)
 
     print(f"\n✅ Report saved: {output_file}")
-

@@ -5,6 +5,8 @@ from langchain.agents import initialize_agent, AgentType, AgentExecutor
 from langchain_core.tools import Tool
 from langchain.memory import ConversationBufferMemory
 from user_query_agent import run_sqlmap_scan
+from user_query_agent import run_xss_test
+
 
 
 # ✅ Import your recon functions
@@ -12,7 +14,7 @@ from recon_modules import run_port_scan, run_subdomain_scan
 from access_simulation import find_admin_panels
 from user_query_agent import (
     run_dns, run_ssl_check, run_whois, geo_ip, reverse_dns,
-    get_headers, tech_stack, run_vulnerability_scan, run_sqlmap_scan
+    get_headers, tech_stack, run_vulnerability_scan, run_sqlmap_scan, run_xss_test, run_stored_xss_test, run_dom_xss_test
 )
 
 # 🧠 Local LLM
@@ -40,7 +42,22 @@ tools = [
     name="SQL Injection Tester",
     func=run_sqlmap_scan,
     description="Use SQLMap to test for SQL injection vulnerabilities on a URL with parameters"
-    )
+    ),
+    Tool(
+    name="XSS Injection Tester",
+    func=run_xss_test,
+    description="Check if a URL with query parameters is vulnerable to reflected XSS."
+	),
+    Tool(
+    name="Stored XSS Tester",
+    func=run_stored_xss_test,
+    description="Detects stored XSS by submitting payloads via POST and checking for reflection"
+),
+    Tool(
+    name="DOM XSS Tester",
+    func=run_dom_xss_test,
+    description="Detects potential DOM-based XSS via URL hash payload injection"
+)
 ]
 
 # 🧠 Enable memory for multi-turn conversation

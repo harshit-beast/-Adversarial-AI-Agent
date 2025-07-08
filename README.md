@@ -1,51 +1,33 @@
-# 🛡️ AI Recon Cybersecurity Agent (LangChain + LLM)
+# 🤖 Adversarial AI Agent
 
-This project is an **AI-powered Reconnaissance Agent** designed for cybersecurity tasks. It combines powerful recon tools like DNS lookup, WHOIS, SSL check, and CVE scanning with natural language summarization using **LangChain** and **Ollama**.
-
-> ✅ Built with LangChain  
-> ⚙️ CLI-based workflow  
-> 💡 LLM-powered summaries  
-> 🔍 Modular recon tools  
-> 📄 Auto-generated reports  
+A powerful, modular AI-powered cybersecurity recon and exploitation framework designed to simulate adversarial attacks using LangChain, NLP, and custom-built tools.  
+This project leverages automation and LLMs to identify potential vulnerabilities and simulate real-world attacks for research and educational purposes.
 
 ---
 
-## 🚀 Features
+## 📌 Features
 
-- 🔍 **Domain Reconnaissance Tools**
-  - WHOIS Lookup
-  - DNS Resolution
-  - SSL Certificate Checker
-  - Port Scanner
-  - Subdomain Enumeration
-  - Admin Panel Finder
-  - IP Geolocation
-  - Reverse DNS
-  - HTTP Headers Fetcher
-  - Technology Stack Detector (placeholder)
-  - CVE/Vulnerability Scanner via [Nuclei](https://github.com/projectdiscovery/nuclei)
-
-- 🧠 **Natural Language Summarization**
-  - Uses `ChatOllama` with the `llama3` model to explain technical results in simple language.
-
-- 📁 **Modular Design**
-  - Each recon task is a separate function/tool.
-  - Easily extendable with more tools or API integrations.
-
-- 📄 **Report Generation**
-  - Automatically saves recon results and LLM summaries to an HTML file.
+- 🔍 **Automated Reconnaissance**: WHOIS, DNS, subdomains, SSL certificate checks
+- 🧠 **AI Agents**: LangChain-driven agents for dynamic analysis and response
+- 🛡️ **Exploitation Modules**: Privilege escalation, access simulation, and credential attacks
+- 📊 **HTML Report Generation**: Clean, structured, actionable output
+- 🧠 **LLM Summarization**: Converts recon data into human-readable risk summaries
 
 ---
 
-## 🧱 Project Structure
+## 🗂️ Project Structure
 
 ```bash
-Adversarial_AI_Agent/
+Adversarial_Agent/
 │
-├── terminal_UI.py              # Interactive CLI for users
-├── user_query_agent.py         # Tool handler and LLM summarizer
-├── recon_modules/              # Port scanner, subdomain finder, etc.
-├── access_simulation.py        # Admin panel finder logic
-├── report_generator.py         # HTML report generation
-├── README.md                   # Project documentation
-└── requirements.txt            # Python dependencies
+├── agents/              # LangChain + NLP AI agents
+├── recon_tools/         # DNS, WHOIS, SSL, subdomain scanners
+├── exploit_tools/       # Privilege escalation & simulated attacks
+├── report_generator/    # Report rendering & risk summary
+├── logger/              # Centralized logging
+├── utils/               # Graphs, helpers, summaries
+├── data/                # Intermediate saved data
+├── tests/               # Unit tests for modules
+├── terminal_UI.py       # CLI interface
+├── requirements.txt     # Dependencies
+└── README.md            # Project documentation

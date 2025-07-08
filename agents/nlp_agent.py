@@ -1,5 +1,5 @@
-from recon_modules import get_whois_info, get_ip_address, get_dns_records, port_scan, find_subdomains
-from generate_report import generate_html_report
+from recon_tools.recon_modules import get_whois_info, get_ip_address, get_dns_records, port_scan, find_subdomains
+from report_generator.generate_report import generate_html_report
 from datetime import datetime
 
 def log_output(data):

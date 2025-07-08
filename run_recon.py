@@ -3,13 +3,13 @@ warnings.filterwarnings("ignore", category=UserWarning)
 import argparse
 import re
 
-from recon_modules import run_whois, run_dns, run_port_scan, run_subdomain_scan
+from recon_tools.recon_modules import run_whois, run_dns, run_port_scan, run_subdomain_scan
 from report_generator import generate_report
-from access_simulation import find_admin_panels, simulate_phishing_risk
-from access_simulation import simulate_weak_login_attempts, simulate_data_exfiltration, simulate_ransomware_activity
-from privilege_evasion import simulate_privilege_escalation, simulate_evasion
+from exploit_tools.access_simulation import find_admin_panels, simulate_phishing_risk
+from exploit_tools.access_simulation import simulate_weak_login_attempts, simulate_data_exfiltration, simulate_ransomware_activity
+from exploit_tools.privilege_evasion import simulate_privilege_escalation, simulate_evasion
 from agent_brain import generate_response, is_ollama_running, react_to_llm_advice
-from attack_graph import generate_attack_graph
+from utils.attack_graph import generate_attack_graph
 
 
 def main():

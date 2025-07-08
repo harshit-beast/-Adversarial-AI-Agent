@@ -4,15 +4,15 @@ from langchain_ollama import ChatOllama
 from langchain.agents import initialize_agent, AgentType, AgentExecutor
 from langchain_core.tools import Tool
 from langchain.memory import ConversationBufferMemory
-from user_query_agent import run_sqlmap_scan
-from user_query_agent import run_xss_test
+from agents.user_query_agent import run_sqlmap_scan
+from agents.user_query_agent import run_xss_test
 
 
 
 # ✅ Import your recon functions
-from recon_modules import run_port_scan, run_subdomain_scan
-from access_simulation import find_admin_panels
-from user_query_agent import (
+from recon_tools.recon_modules import run_port_scan, run_subdomain_scan
+from exploit_tools.access_simulation import find_admin_panels
+from agents.user_query_agent import (
     run_dns, run_ssl_check, run_whois, geo_ip, reverse_dns,
     get_headers, tech_stack, run_vulnerability_scan, run_sqlmap_scan, run_xss_test, run_stored_xss_test, run_dom_xss_test
 )

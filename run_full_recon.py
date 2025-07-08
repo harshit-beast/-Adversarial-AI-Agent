@@ -1,6 +1,6 @@
-from user_query_agent import run_dns, run_ssl_check, run_whois, geo_ip, reverse_dns, get_headers, tech_stack, run_vulnerability_scan
-from recon_modules import run_port_scan, run_subdomain_scan
-from access_simulation import find_admin_panels
+from agents.user_query_agent import run_dns, run_ssl_check, run_whois, geo_ip, reverse_dns, get_headers, tech_stack, run_vulnerability_scan
+from recon_tools.recon_modules import run_port_scan, run_subdomain_scan
+from exploit_tools.access_simulation import find_admin_panels
 
 def run_full_recon(domain):
     results = []

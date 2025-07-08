@@ -29,7 +29,7 @@ elif choice == "2":
     # If it's a direct vulnerability query, run it with Nuclei
     if "vuln" in query or "cve" in query or "exploit" in query:
         print("\n⚠️ Launching direct vulnerability scan with Nuclei...")
-        from user_query_agent import run_vulnerability_scan
+        from agents.user_query_agent import run_vulnerability_scan
         result = run_vulnerability_scan(domain)
         print(result)
 

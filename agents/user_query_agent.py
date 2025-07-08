@@ -16,8 +16,8 @@ from langchain_ollama import ChatOllama  # ✅ LLM
 from langchain_core.tools import Tool
 
 from report_generator import generate_report
-from access_simulation import find_admin_panels
-from recon_modules import run_port_scan, run_subdomain_scan
+from exploit_tools.access_simulation import find_admin_panels
+from recon_tools.recon_modules import run_port_scan, run_subdomain_scan
 
 # -------- Utility -------- #
 def clean_domain(domain):

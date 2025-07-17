@@ -1,4 +1,10 @@
 # interactive_agent.py
+import sys
+import os
+
+# Ensure project root (one level above /agents) is in sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from recon_tools.run_full_recon import run_full_recon
 from langchain_ollama import ChatOllama
 from langchain.agents import initialize_agent, AgentType, AgentExecutor
@@ -6,6 +12,13 @@ from langchain_core.tools import Tool
 from langchain.memory import ConversationBufferMemory
 from agents.user_query_agent import run_sqlmap_scan
 from agents.user_query_agent import run_xss_test
+from exploit_tools.file_upload_tester import run_file_upload_test
+from exploit_tools.cmd_injection_tester import run_cmd_injection_test
+from exploit_tools.cmd_injection_advanced import run_cmd_injection_advanced 
+from user_query_agent import run_path_traversal_test
+from exploit_tools.ssrf_detector import run_ssrf_test
+from exploit_tools.lfi_tester import run_lfi_test
+from exploit_tools.rfi_test import run_rfi_test
 
 
 
@@ -57,7 +70,48 @@ tools = [
     name="DOM XSS Tester",
     func=run_dom_xss_test,
     description="Detects potential DOM-based XSS via URL hash payload injection"
+),
+
+Tool(
+    name="File Upload Tester",
+    func=run_file_upload_test,
+    description="Test for file upload vulnerability and execution"
+),
+Tool(
+    name="Command Injection Tester",
+    func=run_cmd_injection_test,
+    description="Tests if the URL is vulnerable to command injection using basic payloads"
+),
+Tool(
+    name="Advanced Command Injection Tester",
+    func=run_cmd_injection_advanced,
+    description="Tests for command injection in POST body and headers"
+),
+Tool(
+    name="Path Traversal Tester",
+    func=run_path_traversal_test,
+    description="Test for directory traversal vulnerabilities by attempting to read OS-level files"
+),
+Tool(
+    name="SSRF Tester",
+    func=run_ssrf_test,
+    description="Checks for SSRF by injecting internal IP targets"
+),
+
+Tool(
+    name="Local File Inclusion Tester",
+    func=run_lfi_test,
+    description="Detect LFI vulnerability by attempting to read /etc/passwd or other local files"
+),
+
+Tool(
+    name="RFI Tester",
+    func=run_rfi_test,
+    description="Detect Remote File Inclusion by injecting remote file URL into parameters."
 )
+
+
+
 ]
 
 # 🧠 Enable memory for multi-turn conversation

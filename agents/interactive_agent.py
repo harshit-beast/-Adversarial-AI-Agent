@@ -19,6 +19,8 @@ from user_query_agent import run_path_traversal_test
 from exploit_tools.ssrf_detector import run_ssrf_test
 from exploit_tools.lfi_tester import run_lfi_test
 from exploit_tools.rfi_test import run_rfi_test
+from exploit_tools.upload_php_shell_tool import upload_php_shell
+from exploit_tools.check_shell_tool import check_shell
 
 
 
@@ -108,8 +110,11 @@ Tool(
     name="RFI Tester",
     func=run_rfi_test,
     description="Detect Remote File Inclusion by injecting remote file URL into parameters."
-)
+),
+ 
 
+   Tool(name="PHPShellUploader", func=upload_php_shell, description="Upload PHP shell to vulnerable site"),
+    Tool(name="ShellChecker", func=check_shell, description="Check if uploaded PHP shell is accessible"),
 
 
 ]
@@ -136,7 +141,7 @@ agent_executor = AgentExecutor.from_agent_and_tools(
 )
 
 # 💬 Chat loop
-print("💬 Interactive Recon Chat Agent (type 'exit' to quit)\n")
+print("💬 Interactive Chat Agent (type 'exit' to quit)\n")
 
 while True:
     user_input = input("👤 You: ")

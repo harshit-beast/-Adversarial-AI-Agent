@@ -305,7 +305,8 @@ Tool(
     name="Path Traversal Tester",
     func=run_path_traversal_test,
     description="Test for directory traversal vulnerabilities by attempting to read OS-level files"
-)
+),
+
 
 
  

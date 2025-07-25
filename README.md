@@ -48,7 +48,6 @@ langchain_agent_report.py	Agent that summarizes recon data using LLMs and genera
 llm_agent.py	Utility for LLM-based parsing, summarization, and scoring of recon data.
 nlp_agent.py	Performs NLP analysis on collected data to extract entities and key insights.
 langchain_ssl_agent.py	SSL-specific agent that uses LangChain and LLM to analyze certificate data.
-stored_xss_response.html	Stores output for stored XSS results processed by agents.
 user_query_agent.py	Accepts natural language queries (e.g., "check SSL", "find DNS") and routes them to tools .
 
 
@@ -95,3 +94,71 @@ sqlmap/	Contains SQL injection scripts using the sqlmap tool.
 ssrf_detector.py	Detects Server-Side Request Forgery vulnerabilities.
 privilege_evasion.py	Placeholder for scripts to simulate privilege escalation.
 access_simulation.py	Simulates post-exploitation access control testing.
+
+
+
+🚀 Execution Workflow (Recon + Exploitation Completed)
+🧠 1. Start the AI Recon Agent
+Run the interactive agent:
+cd agents
+python3 interactive_agent.py
+You will see:
+
+Edit
+💬 Interactive Recon Chat Agent (type 'exit' to quit)
+👤 You:
+🕵️ 2. Reconnaissance Phase
+Use natural language prompts to run recon tools:
+
+Prompt	Action Taken
+Scan subdomains of example.com	-->Finds hidden subdomains
+Run full recon on example.com --->DNS, WHOIS, SSL, headers, subdomains, etc.
+Get geolocation of example.com	-->Maps server IP to location
+
+✅ Tools used: DNS lookup, WHOIS, SSL checker, Subdomain finder, IP geolocation, header checker, reverse DNS.
+
+💣 3. Exploitation Phase 
+Use prompts to simulate attacks:
+
+a. SQL Injection
+check for sql injection on http://testphp.vulnweb.com/artists.php?artist=1
+→ Uses sqlmap in backend.
+
+b. XSS Testing
+Reflected: check for xss on <URL>?q=
+
+Stored: check for stored xss on <vulnerable comment page>
+
+DOM: check for dom xss on <script vulnerable URL>
+
+Agent injects payloads like:
+
+<script>alert(1337)</script>
+c. File Upload & RCE
+Upload PHP payload manually to vulnerable lab
+
+Use prompt:
+check file upload vulnerability on <URL>
+Agent checks for execution or access.
+
+d. SSRF
+check for ssrf on http://vulnerable-site.com/fetch?url=
+→ Tests URLs like 127.0.0.1, 169.254.169.254, etc.
+
+e. LFI / RFI
+check for lfi on <URL>?file=
+check for rfi on <URL>?file=http://harshit2.infinityfreeapp.com/test.php
+→ Agent tests /etc/passwd, win.ini, hosted payloads, etc.
+
+⚙️ 4. Tool Integration
+All tools integrated as LangChain tools and wrapped inside an LLM agent (llama3 via Ollama).
+
+🧪 5. Testing Mode
+You interact with the agent like a chatbot. Behind the scenes:
+
+Agent decides the correct tool
+
+Executes code (Selenium/sqlmap/cURL)
+
+Parses and displays results in simple terms
+

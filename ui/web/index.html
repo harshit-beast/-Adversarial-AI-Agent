@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adversarial AI Agent Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <main class="shell">
+    <header class="hero card reveal">
+      <p class="eyebrow">Ethical Lab Environment</p>
+      <h1>AI Cybersecurity Agent</h1>
+      <p class="hero-copy">
+        Clean dashboard for reconnaissance, web testing, lifecycle simulation, and report export.
+        Run only on systems you own or are explicitly authorized to test.
+      </p>
+      <div class="hero-meta">
+        <span id="health-badge" class="status-pill">Checking API...</span>
+        <span class="status-pill muted">Generated workflow from ODP scope</span>
+      </div>
+    </header>
+
+    <section class="grid-2">
+      <article class="card reveal delay-1">
+        <h2>Target Configuration</h2>
+        <label class="field-label" for="target-input">Domain / Host</label>
+        <input id="target-input" class="input" type="text" placeholder="example.com" />
+
+        <label class="field-label" for="web-url-input">Web Test URL</label>
+        <input id="web-url-input" class="input" type="text" placeholder="http://target.local/search?q=" />
+
+        <div class="button-row">
+          <button id="run-full-btn" class="btn primary">Run Full Pipeline</button>
+          <button id="clear-btn" class="btn ghost">Clear Results</button>
+        </div>
+      </article>
+
+      <article class="card reveal delay-2">
+        <h2>Recon Modules</h2>
+        <div class="checks" id="recon-checks">
+          <label><input type="checkbox" value="dns" checked />DNS</label>
+          <label><input type="checkbox" value="whois" checked />WHOIS</label>
+          <label><input type="checkbox" value="ssl" checked />SSL</label>
+          <label><input type="checkbox" value="ports" checked />Port Scan</label>
+          <label><input type="checkbox" value="subdomains" checked />Subdomains</label>
+          <label><input type="checkbox" value="headers" checked />Headers</label>
+          <label><input type="checkbox" value="geo" />Geo IP</label>
+          <label><input type="checkbox" value="reverse_dns" />Reverse DNS</label>
+          <label><input type="checkbox" value="admin_panels" checked />Admin Panels</label>
+        </div>
+        <div class="button-row">
+          <button id="run-recon-btn" class="btn">Run Recon</button>
+          <button data-check-group="recon-checks" class="btn ghost small">Toggle All</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <article class="card reveal delay-3">
+        <h2>Web Tests</h2>
+        <div class="checks" id="web-checks">
+          <label><input type="checkbox" value="xss" checked />Reflected XSS</label>
+          <label><input type="checkbox" value="lfi" checked />LFI</label>
+          <label><input type="checkbox" value="rfi" />RFI</label>
+          <label><input type="checkbox" value="ssrf" checked />SSRF</label>
+          <label><input type="checkbox" value="cmd_injection_basic" checked />Cmd Injection (Basic)</label>
+          <label><input type="checkbox" value="cmd_injection_advanced" />Cmd Injection (Advanced)</label>
+        </div>
+        <div class="button-row">
+          <button id="run-web-btn" class="btn">Run Web Tests</button>
+          <button data-check-group="web-checks" class="btn ghost small">Toggle All</button>
+        </div>
+      </article>
+
+      <article class="card reveal delay-4">
+        <h2>Lifecycle Simulation</h2>
+        <div class="checks" id="sim-checks">
+          <label><input type="checkbox" value="gaining_access" checked />Gaining Access</label>
+          <label><input type="checkbox" value="privilege_escalation" checked />Privilege Escalation</label>
+          <label><input type="checkbox" value="evasion" checked />Evasion</label>
+          <label><input type="checkbox" value="impact_exfiltration" checked />Impact: Exfiltration</label>
+          <label><input type="checkbox" value="impact_ransomware" checked />Impact: Ransomware</label>
+        </div>
+        <div class="button-row">
+          <button id="run-sim-btn" class="btn">Run Simulation</button>
+          <button data-check-group="sim-checks" class="btn ghost small">Toggle All</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card reveal delay-5">
+      <div class="result-header">
+        <h2>Results</h2>
+        <div class="button-row">
+          <button id="export-btn" class="btn primary">Export Report</button>
+        </div>
+      </div>
+
+      <div class="risk-panel" id="risk-panel">
+        <span class="risk-label">Risk</span>
+        <strong id="risk-level">N/A</strong>
+        <span id="risk-score">Score: 0/10</span>
+      </div>
+
+      <div class="result-grid">
+        <section>
+          <h3>Recon</h3>
+          <pre id="recon-output" class="output">Run recon to see results.</pre>
+        </section>
+        <section>
+          <h3>Web Tests</h3>
+          <pre id="web-output" class="output">Run web tests to see results.</pre>
+        </section>
+        <section>
+          <h3>Simulation</h3>
+          <pre id="sim-output" class="output">Run simulation to see results.</pre>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

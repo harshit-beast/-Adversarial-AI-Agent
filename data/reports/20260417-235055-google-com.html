@@ -1,0 +1,306 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Cybersecurity Assessment</title>
+  <style>
+    :root {
+      --bg: #061019;
+      --panel: #0e1e2d;
+      --panel-soft: #13283c;
+      --text: #e8f0ff;
+      --muted: #9fb7d3;
+      --line: #244160;
+      --accent: #3dd6ff;
+      --warn: #ffb84c;
+      --danger: #ff6b6b;
+      --ok: #57d68d;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 0%, #12395e 0%, var(--bg) 50%);
+      color: var(--text);
+      padding: 28px;
+      line-height: 1.5;
+    }
+    h1, h2, h3, h4 { margin: 0 0 10px; }
+    .header {
+      border: 1px solid var(--line);
+      background: rgba(7, 20, 32, 0.75);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .meta { color: var(--muted); }
+    .risk {
+      margin-top: 10px;
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+    }
+    .risk.low { color: var(--ok); }
+    .risk.medium { color: var(--warn); }
+    .risk.high, .risk.critical { color: var(--danger); }
+    section {
+      border: 1px solid var(--line);
+      background: rgba(9, 28, 44, 0.78);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .result-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 8px 0 0;
+      color: #d0e2f8;
+      font-size: 13px;
+    }
+    li { margin-bottom: 4px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>AI Cybersecurity Assessment</h1>
+    <p class="meta">Generated at 2026-04-17T18:20:55.220807+00:00</p>
+    <p class="meta">Target: google.com</p>
+    <p class="risk medium">Risk: medium (5/10)</p>
+  </header>
+
+  <section>
+    <h3>Risk Reasons</h3>
+    <ul><li>High-risk ports detected</li><li>Potential admin panel exposure</li><li>Missing recommended security header: X-Content-Type-Options</li></ul>
+  </section>
+
+  
+          <section>
+            <h3>Reconnaissance</h3>
+            
+                <article class="result-card">
+                  <h4>dns</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 11 ms</p>
+                  <pre>142.250.183.238</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>whois</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 1481 ms</p>
+                  <pre>{
+  "domain_name": "GOOGLE.COM",
+  "registrar": "MarkMonitor, Inc.",
+  "registrar_url": "http://www.markmonitor.com",
+  "reseller": null,
+  "whois_server": "whois.markmonitor.com",
+  "referral_url": null,
+  "updated_date": [
+    "2019-09-09 15:39:04",
+    "2024-08-02 02:17:33+00:00"
+  ],
+  "creation_date": [
+    "1997-09-15 04:00:00",
+    "1997-09-15 07:00:00+00:00"
+  ],
+  "expiration_date": [
+    "2028-09-14 04:00:00",
+    "2028-09-13 07:00:00+00:00"
+  ],
+  "name_servers": [
+    "NS1.GOOGLE.COM",
+    "NS2.GOOGLE.COM",
+    "NS3.GOOGLE.COM",
+    "NS4.GOOGLE.COM"
+  ],
+  "status": [
+    "clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited",
+    "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+    "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited",
+    "serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited",
+    "serverTransferProhibited https://icann.org/epp#serverTransferProhibited",
+    "serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited",
+    "clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)",
+    "clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)",
+    "clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)",
+    "serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)",
+    "serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)",
+    "serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)"
+  ],
+  "emails": [
+    "abusecomplaints@markmonitor.com",
+    "whoisrequest@markmonitor.com"
+  ],
+  "dnssec": "unsigned",
+  "name": null,
+  "org": "Google LLC",
+  "address": null,
+  "city": null,
+  "state": null,
+  "registrant_postal_code": null,
+  "country": "US"
+}</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>ssl</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 38 ms</p>
+                  <pre>Issued To: *.google.com
+Issued By: WR2
+Valid From: Mar 30 08:35:08 2026 GMT
+Valid Until: Jun 22 08:35:07 2026 GMT</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>ports</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 5384 ms</p>
+                  <pre>Host: 142.251.223.206 (google.com)
+Protocol: tcp
+Port: 80	State: open
+Port: 443	State: open
+</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>subdomains</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 7 ms</p>
+                  <pre>www.google.com
+mail.google.com
+ns1.google.com
+blog.google.com</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>headers</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 280 ms</p>
+                  <pre>Date: Fri, 17 Apr 2026 18:18:57 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-SuXEpkAHEB41O1qG53sptg' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Accept-CH: Sec-CH-Prefers-Color-Scheme
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Content-Encoding: gzip
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: __Secure-STRP=AEEP7gKYXhZ5At1bNNOWhUjuJDlA6o74wzAaRQOnk1UWuxEfuAnNHR8xnQ2SIXquDi3tRL1DvWcpwSqnwZ4lbeVNwNmkhPHWdY4Z; expires=Fri, 17-Apr-2026 18:23:57 GMT; path=/; domain=.google.com; Secure; SameSite=strict, AEC=AaJma5vhggJ_zxMpbG91fRg0QP_eWfOlCUkuwGnW5wqDQO_Nux9xJADDcw; expires=Wed, 14-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax, NID=530=FAEfyUDy9RpSZm0844G476ZcA2J5meVk0sjqAvGIxpvK_idYJ4uFyC8ChI6TTAgnCG5ZTpVWNN2Udb3RNACpdPP5sx1KLqZDYq6Y4Izdq0fby09CqqpNtH81Z3YgU3x2z3RN4UtRTjOFRUK5-JPNb3PNuA6nNJpTC-G3KzMDCk3s36E0eqAIFeKff10lvzz0m2Tp2E8smQxdGxNXt8Dr7BkbJZ_B9fDHtQ; expires=Sat, 17-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; HttpOnly, __Secure-BUCKET=CJIE; expires=Wed, 14-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; Secure; HttpOnly
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+Transfer-Encoding: chunked</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>admin_panels</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 1001 ms</p>
+                  <pre>http://google.com/dashboard</pre>
+                </article>
+                
+          </section>
+        
+  
+          <section>
+            <h3>Web Testing</h3>
+            
+                <article class="result-card">
+                  <h4>xss</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 238 ms</p>
+                  <pre>No reflected XSS indicators found.
+Test URL: https://www.google.com/?zx=1776449915499%3Cscript%3Ealert%281337%29%3C%2Fscript%3E</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>lfi</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 683 ms</p>
+                  <pre>❌ Not vulnerable with: ../../../../../../etc/passwd
+❌ Not vulnerable with: ../../../../../../etc/hosts
+❌ Not vulnerable with: ..\..\..\..\..\..\windows\win.ini
+❌ Not vulnerable with: /etc/passwd</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>ssrf</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 817 ms</p>
+                  <pre>✅ Tested: http://127.0.0.1 - Status: 200
+✅ Tested: http://localhost - Status: 200
+✅ Tested: http://169.254.169.254/latest/meta-data/ - Status: 200
+✅ Tested: http://0.0.0.0 - Status: 200
+✅ Tested: http://[::1] - Status: 200</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>cmd_injection_basic</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 706 ms</p>
+                  <pre>✅ No command injection vulnerability detected.</pre>
+                </article>
+                
+          </section>
+        
+  
+          <section>
+            <h3>Lifecycle Simulation</h3>
+            
+                <article class="result-card">
+                  <h4>gaining_access</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 0 ms</p>
+                  <pre>Tried admin:admin at http://google.com/admin [SIMULATED]
+Tried admin:123456 at http://google.com/admin [SIMULATED]
+Tried root:toor at http://google.com/admin [SIMULATED]
+Tried admin:admin at http://google.com/login [SIMULATED]
+Tried admin:123456 at http://google.com/login [SIMULATED]
+Tried root:toor at http://google.com/login [SIMULATED]
+Tried admin:admin at http://google.com/administrator [SIMULATED]
+Tried admin:123456 at http://google.com/administrator [SIMULATED]
+Tried root:toor at http://google.com/administrator [SIMULATED]</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>privilege_escalation</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 494 ms</p>
+                  <pre>No sensitive files or privilege escalation vectors found.</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>evasion</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 2005 ms</p>
+                  <pre>User-Agent spoofed as: Googlebot/2.1 (+http://www.google.com/bot.html)
+Added delay of 2 seconds to avoid detection.
+Skipped suspicious honeypot URLs: /secret-admin, /hidden-login, /dont-click-here</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>impact_exfiltration</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 0 ms</p>
+                  <pre>Exfiltrated credentials.txt → http://attacker-server.com/upload/credentials.txt [SIMULATED]
+Exfiltrated employee_data.csv → http://attacker-server.com/upload/employee_data.csv [SIMULATED]
+Exfiltrated source_code.zip → http://attacker-server.com/upload/source_code.zip [SIMULATED]</pre>
+                </article>
+                
+                <article class="result-card">
+                  <h4>impact_ransomware</h4>
+                  <p><strong>Status:</strong> ok | <strong>Duration:</strong> 0 ms</p>
+                  <pre>Encrypted /home/user/documents/resume.docx with AES-256 [SIMULATED]
+Encrypted /var/www/html/index.html with AES-256 [SIMULATED]
+Encrypted /etc/passwd with AES-256 [SIMULATED]
+Encrypted /project/database.db with AES-256 [SIMULATED]
+
+🚨 RANSOM NOTE 🚨
+Your files have been encrypted.
+To recover them, send 1 BTC to wallet: 1FAKEransomWalletBTCaddress
+Contact: attacker@example.com</pre>
+                </article>
+                
+          </section>
+        
+</body>
+</html>

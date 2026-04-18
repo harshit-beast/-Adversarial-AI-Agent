@@ -1,0 +1,100 @@
+{
+  "title": "AI Cybersecurity Assessment",
+  "target": "google.com",
+  "generated_at": "2026-04-17T18:20:55.220807+00:00",
+  "recon": {
+    "dns": {
+      "status": "ok",
+      "duration_ms": 11,
+      "result": "142.250.183.238"
+    },
+    "whois": {
+      "status": "ok",
+      "duration_ms": 1481,
+      "result": "{\n  \"domain_name\": \"GOOGLE.COM\",\n  \"registrar\": \"MarkMonitor, Inc.\",\n  \"registrar_url\": \"http://www.markmonitor.com\",\n  \"reseller\": null,\n  \"whois_server\": \"whois.markmonitor.com\",\n  \"referral_url\": null,\n  \"updated_date\": [\n    \"2019-09-09 15:39:04\",\n    \"2024-08-02 02:17:33+00:00\"\n  ],\n  \"creation_date\": [\n    \"1997-09-15 04:00:00\",\n    \"1997-09-15 07:00:00+00:00\"\n  ],\n  \"expiration_date\": [\n    \"2028-09-14 04:00:00\",\n    \"2028-09-13 07:00:00+00:00\"\n  ],\n  \"name_servers\": [\n    \"NS1.GOOGLE.COM\",\n    \"NS2.GOOGLE.COM\",\n    \"NS3.GOOGLE.COM\",\n    \"NS4.GOOGLE.COM\"\n  ],\n  \"status\": [\n    \"clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\",\n    \"clientTransferProhibited https://icann.org/epp#clientTransferProhibited\",\n    \"clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited\",\n    \"serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited\",\n    \"serverTransferProhibited https://icann.org/epp#serverTransferProhibited\",\n    \"serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited\",\n    \"clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)\",\n    \"clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)\",\n    \"clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)\",\n    \"serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)\",\n    \"serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)\",\n    \"serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)\"\n  ],\n  \"emails\": [\n    \"abusecomplaints@markmonitor.com\",\n    \"whoisrequest@markmonitor.com\"\n  ],\n  \"dnssec\": \"unsigned\",\n  \"name\": null,\n  \"org\": \"Google LLC\",\n  \"address\": null,\n  \"city\": null,\n  \"state\": null,\n  \"registrant_postal_code\": null,\n  \"country\": \"US\"\n}"
+    },
+    "ssl": {
+      "status": "ok",
+      "duration_ms": 38,
+      "result": "Issued To: *.google.com\nIssued By: WR2\nValid From: Mar 30 08:35:08 2026 GMT\nValid Until: Jun 22 08:35:07 2026 GMT"
+    },
+    "ports": {
+      "status": "ok",
+      "duration_ms": 5384,
+      "result": "Host: 142.251.223.206 (google.com)\nProtocol: tcp\nPort: 80\tState: open\nPort: 443\tState: open\n"
+    },
+    "subdomains": {
+      "status": "ok",
+      "duration_ms": 7,
+      "result": "www.google.com\nmail.google.com\nns1.google.com\nblog.google.com"
+    },
+    "headers": {
+      "status": "ok",
+      "duration_ms": 280,
+      "result": "Date: Fri, 17 Apr 2026 18:18:57 GMT\nExpires: -1\nCache-Control: private, max-age=0\nContent-Type: text/html; charset=ISO-8859-1\nContent-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-SuXEpkAHEB41O1qG53sptg' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp\nAccept-CH: Sec-CH-Prefers-Color-Scheme\nP3P: CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"\nContent-Encoding: gzip\nServer: gws\nX-XSS-Protection: 0\nX-Frame-Options: SAMEORIGIN\nSet-Cookie: __Secure-STRP=AEEP7gKYXhZ5At1bNNOWhUjuJDlA6o74wzAaRQOnk1UWuxEfuAnNHR8xnQ2SIXquDi3tRL1DvWcpwSqnwZ4lbeVNwNmkhPHWdY4Z; expires=Fri, 17-Apr-2026 18:23:57 GMT; path=/; domain=.google.com; Secure; SameSite=strict, AEC=AaJma5vhggJ_zxMpbG91fRg0QP_eWfOlCUkuwGnW5wqDQO_Nux9xJADDcw; expires=Wed, 14-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax, NID=530=FAEfyUDy9RpSZm0844G476ZcA2J5meVk0sjqAvGIxpvK_idYJ4uFyC8ChI6TTAgnCG5ZTpVWNN2Udb3RNACpdPP5sx1KLqZDYq6Y4Izdq0fby09CqqpNtH81Z3YgU3x2z3RN4UtRTjOFRUK5-JPNb3PNuA6nNJpTC-G3KzMDCk3s36E0eqAIFeKff10lvzz0m2Tp2E8smQxdGxNXt8Dr7BkbJZ_B9fDHtQ; expires=Sat, 17-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; HttpOnly, __Secure-BUCKET=CJIE; expires=Wed, 14-Oct-2026 18:18:57 GMT; path=/; domain=.google.com; Secure; HttpOnly\nAlt-Svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000\nTransfer-Encoding: chunked"
+    },
+    "admin_panels": {
+      "status": "ok",
+      "duration_ms": 1001,
+      "result": "http://google.com/dashboard"
+    }
+  },
+  "webtests": {
+    "xss": {
+      "status": "ok",
+      "duration_ms": 238,
+      "result": "No reflected XSS indicators found.\nTest URL: https://www.google.com/?zx=1776449915499%3Cscript%3Ealert%281337%29%3C%2Fscript%3E"
+    },
+    "lfi": {
+      "status": "ok",
+      "duration_ms": 683,
+      "result": "\u274c Not vulnerable with: ../../../../../../etc/passwd\n\u274c Not vulnerable with: ../../../../../../etc/hosts\n\u274c Not vulnerable with: ..\\..\\..\\..\\..\\..\\windows\\win.ini\n\u274c Not vulnerable with: /etc/passwd"
+    },
+    "ssrf": {
+      "status": "ok",
+      "duration_ms": 817,
+      "result": "\u2705 Tested: http://127.0.0.1 - Status: 200\n\u2705 Tested: http://localhost - Status: 200\n\u2705 Tested: http://169.254.169.254/latest/meta-data/ - Status: 200\n\u2705 Tested: http://0.0.0.0 - Status: 200\n\u2705 Tested: http://[::1] - Status: 200"
+    },
+    "cmd_injection_basic": {
+      "status": "ok",
+      "duration_ms": 706,
+      "result": "\u2705 No command injection vulnerability detected."
+    }
+  },
+  "simulation": {
+    "gaining_access": {
+      "status": "ok",
+      "duration_ms": 0,
+      "result": "Tried admin:admin at http://google.com/admin [SIMULATED]\nTried admin:123456 at http://google.com/admin [SIMULATED]\nTried root:toor at http://google.com/admin [SIMULATED]\nTried admin:admin at http://google.com/login [SIMULATED]\nTried admin:123456 at http://google.com/login [SIMULATED]\nTried root:toor at http://google.com/login [SIMULATED]\nTried admin:admin at http://google.com/administrator [SIMULATED]\nTried admin:123456 at http://google.com/administrator [SIMULATED]\nTried root:toor at http://google.com/administrator [SIMULATED]"
+    },
+    "privilege_escalation": {
+      "status": "ok",
+      "duration_ms": 494,
+      "result": "No sensitive files or privilege escalation vectors found."
+    },
+    "evasion": {
+      "status": "ok",
+      "duration_ms": 2005,
+      "result": "User-Agent spoofed as: Googlebot/2.1 (+http://www.google.com/bot.html)\nAdded delay of 2 seconds to avoid detection.\nSkipped suspicious honeypot URLs: /secret-admin, /hidden-login, /dont-click-here"
+    },
+    "impact_exfiltration": {
+      "status": "ok",
+      "duration_ms": 0,
+      "result": "Exfiltrated credentials.txt \u2192 http://attacker-server.com/upload/credentials.txt [SIMULATED]\nExfiltrated employee_data.csv \u2192 http://attacker-server.com/upload/employee_data.csv [SIMULATED]\nExfiltrated source_code.zip \u2192 http://attacker-server.com/upload/source_code.zip [SIMULATED]"
+    },
+    "impact_ransomware": {
+      "status": "ok",
+      "duration_ms": 0,
+      "result": "Encrypted /home/user/documents/resume.docx with AES-256 [SIMULATED]\nEncrypted /var/www/html/index.html with AES-256 [SIMULATED]\nEncrypted /etc/passwd with AES-256 [SIMULATED]\nEncrypted /project/database.db with AES-256 [SIMULATED]\n\n\ud83d\udea8 RANSOM NOTE \ud83d\udea8\nYour files have been encrypted.\nTo recover them, send 1 BTC to wallet: 1FAKEransomWalletBTCaddress\nContact: attacker@example.com"
+    }
+  },
+  "risk": {
+    "score": 5,
+    "level": "medium",
+    "reasons": [
+      "High-risk ports detected",
+      "Potential admin panel exposure",
+      "Missing recommended security header: X-Content-Type-Options"
+    ]
+  }
+}

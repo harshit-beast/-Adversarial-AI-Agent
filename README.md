@@ -1,4 +1,4 @@
-# Project Scope Derived from `AI for cybersecurity.odp`
+
 
 ## Core objective
 Build an AI-assisted cybersecurity agent that follows an ethical attack lifecycle in authorized lab environments:
